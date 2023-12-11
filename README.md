@@ -1,5 +1,9 @@
 # multirotor
-## the first day ——12.10
+
+<hr>
+
+## The first day ——12.10
+
 * install vmware-workstation and ubuntu
 
 * swap sources and 换输入法
@@ -10,7 +14,7 @@
 
 * install and use Typora
 
-  ### Git
+### Git
 
 |code|meaning|
 |-------|:----------:|
@@ -34,5 +38,26 @@
 |clone|远程仓库关联到本地|
 |push origin branch|修改提交|
 
+<hr>
 
+## The second day——12.11
+
+### 1. install and learn g++
+
+- question1: unable to install g++
+- sovle1:swap sources;
+
+### 2. printf  "hello world"
+
+- question2:unable to edit helloworld.cpp
+- sovle2:learn vim
+
+
+- question3:unable to compile and run
+- sovle3:learn g++ about linking cpp files
+
+
+### G++
+|command|meaning|
+|:-------------:|-------------|
 
