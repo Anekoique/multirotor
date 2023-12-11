@@ -1,3 +1,7 @@
+
+
+
+
 # multirotor
 
 <hr>
@@ -17,7 +21,7 @@
 ### Git
 
 |code|meaning|
-|-------|:----------:|
+|:------|:-----------|
 |mkdir test|创建目录|
 |cd test|进入目录|
 |git init|初始化仓库|
@@ -38,7 +42,9 @@
 |clone|远程仓库关联到本地|
 |push origin branch|修改提交|
 
+
 <hr>
+
 
 ## The second day——12.11
 
@@ -47,7 +53,7 @@
 - question1: unable to install g++
 - sovle1:swap sources;
 
-### 2. printf  "hello world"
+### 2. c++ printf  "hello world"
 
 - question2:unable to edit helloworld.cpp
 - sovle2:learn vim
@@ -56,8 +62,46 @@
 - question3:unable to compile and run
 - sovle3:learn g++ about linking cpp files
 
-
 ### G++
-|command|meaning|
-|:-------------:|-------------|
 
+#### some command：
+
+|command|meaning|
+|-------------|-------------|
+|-o outputfile file.cpp|编译为可执行文件|
+|-c|编译为对象文件|
+|-o outputfile file1.o file2.o|链接对象文件|
+
+#### about .o files and .exe files：
+对象文件和可执行文件的主要区别在于链接的程度：对象文件包含了部分链接的代码，而可执行文件包含了完全链接的代码。在一些大型项目中，源代码可能被分割成多个文件，然后分别编译成对象文件，最后再链接成一个可执行文件。这样的做法可以提高编译的效率，因为当某个源文件被修改时，只需要重新编译那个文件，而不需要重新编译整个项目。
+
+```c++
+g++ -o test1 hello.cpp helloworld.cpp
+```
+```c++
+g++ -c hello.cpp
+g++ -c helloworld.cpp
+g++ -o test2 hello.o helloworld.o
+```
+```c++
+g++ -o test3 hello.o helloworld.cpp
+```
+```c++
+g++ -o test4 hello.cpp //wrong
+```
+
+
+
+<hr>
+
+### vim
+_默认命令模式_
+
+|command|meaning|
+|:-------------|:---------|
+|ESC|命令模式|
+|gg / G/ 5+G|首行/末行/第五行|
+|yy / p/ dd|复制/粘贴/剪切|
+|u / ctrl + r|撤销/取消撤销|
+|+i / +a|编辑模式|
+|：/ wq/ q！|末行模式/保存退出/强制退出|
