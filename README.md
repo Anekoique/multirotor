@@ -8,15 +8,15 @@
 
 ## The first day ——12.10
 
-* install vmware-workstation and ubuntu
+### 1.install vmware-workstation and ubuntu
 
 * swap sources and 换输入法
 
-* learn git
+### 2.learn git
 
 * github关联远程仓库
 
-* install and use Typora
+### 3.install and use Typora
 
 ### Git
 
@@ -150,7 +150,154 @@ Cflags: -I${includedir}
 - question 4 ：上面的 solve 没有 solve
 - quesiton ........
 - sovle :卸载
+- question 5 :  上面的 solve 没有solve
 
 ***
 
 ### 2. learn to use opencv and code to invoke the webcam
+
+### 3.Abaut the total install of Opencv
+_main error_
+- error 1 :检测opencv版本报错
+- solve ：手动创建opencv.pc
+***
+- error 2 : 编译fatal error ：opencv2/opencv.hpp:没有那个文件或目录
+- solve ：将opencv2文件夹链接到include文件夹下
+~~~
+sudo ln -s /usr/include/opencv4/opencv2 /usr/include/
+~~~
+- error 3 :上述代码仍无法解决问题
+- solve ：代码路径不准确
+~~~
+sudo ln -s /usr/local/include/opencv4/opencv2 /usr/local/include/
+~~~
+***
+- error 4 : 编译通过生成目标文件，不能生成链接文件 报错 no input files
+- solve ：g++用法错误
+
+~~~
+g++ -o webcam.o      //wrong
+g++  webcam.o -o webcam  //wright
+~~~
+
+ps：百度搜不到解决方案，还得是gpt。
+这个错误通常是因为你没有在编译命令中指定要编译的源文件。例如，如果你想编译一个名为hello.cpp的源文件，你应该使用以下命令：
+```
+g++ hello.cpp -o hello
+```
+在这个命令中，hello.cpp是要编译的源文件，-o选项指定了输出文件的名称，hello是输出文件的名称。如果你在命令中没有指定要编译的源文件，编译器就会报“no input files”的错误。确保你在命令中指定了正确的源文件名，并且文件存在于当前工作目录中。
+
+***
+
+- error 5 ：g++用法正确后报错undefined reference to`cv::VideoCapture::VideoCapture(int, int)'
+- solve :链接时没有包含OpenCV库文件。要解决这个问题，需要在编译命令中包含OpenCV库文件
+```
+g++ yourfile.cpp -o yourfile `pkg-config --cflags --libs opencv`
+```
+
+***
+
+- error 6 ：成功编译成可执行文件，但运行时报错error while loading shared libraries: libopencv_highgui.so.3.4: cannot open shared object file: No such file or directory
+- solve ：有几个库找不到，用locate定位这几个库
+~~~
+sudo apt install mlocate
+locate libopencv_highgui.so.3.4
+~~~
+找到后添加路径
+```
+cd /etc/ld.so.conf.d
+sudo vim opencv.conf    //加入路径
+sudo ldconfig
+```
+***
+- error 7 : 想不起来还error什么了
+
+## The forth day——12.13
+//最顺利的一集
+### 1.install anaconda
+### 2.create  virtul environment
+### 3.install pytorch
+
+### Conda
+|command|meaning|
+|--------------|------------|
+|conda env list|存在的虚拟环境|
+|conda create -n your_env_name python=x.x|创建虚拟环境|
+|conda activate your_env_nam|进入虚拟环境|
+|conda deactivate env_name|退出虚拟环境|
+|conda remove -n your_env_name --all|删除虚拟环境|
+
+***
+
+## The fifth day——12.14
+
+***
+
+### 1.搭建Ardupilot开发环境
+### 2.启动SITL
+#### - error：Failed to load module
+1. TRY 1 ：//fail
+~~~
+sudo -H pip2 install --upgrade MAVProxy pymavlink future lxml
+~~~
+error :-H无法找到命令与目录
+solve :在sudo命令中，-H标志是用来设置HOME环境变量为目标用户的家目录。这个标志是有效的，但是在某些情况下，可能会遇到"-H: 没有那个文件或目录"的错误。这通常是因为系统中的sudoers文件配置问题导致的。
+如果遇到了这个问题，可能需要检查一下系统的sudoers文件配置。可以使用visudo命令来编辑sudoers文件，确保其中包含以下内容：
+~~~
+Defaults env_keep += "HOME"       //failed
+~~~
+***
+2. TRY 2 ：//fail
+~~~
+sudo pip2 install --upgrade MAVProxy pymavlink future lxml
+~~~
+error ：pip2无法找到命令与目录
+solve ：
+~~~
+sudo apt-get install python-pip
+~~~
+error： If executing pip with sudo, you may want sudo's -H flag
+~~~
+sudo chown root /home/gonglai/.cache/pip/http
+sudo chown root /home/gonglai/.cache/pip
+~~~
+error ：Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade
+solve ：
+***
+3. TRY 3 ：//fail
+From csdn:
+python几个包未安装好，需要删除后重装
+~~~
+pip3 uninstall MAVProxy pymavlink future lxml
+sudo -H pip2 install --upgrade MAVProxy pymavlink future lxml
+~~~
+***
+4. TRY 4 ：//fail
+From csdn：
+mavproxy未安装好
+~~~
+sudo apt-get install python3-dev python3-opencv python3-wxgtk4.0 python3-pip python3-matplotlib python3-lxml python-pygame
+pip3 install PyYAML mavproxy --user
+echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
+~~~
+***
+5. TRY 5 ：
+From csdn：
+更换python版本，旧版本的mavproxy貌似不支持python3
+添加python2到索引，并设置python2为默认的python版本
+```
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+sudo update-alternatives --config python
+```
+***
+6. TRY 6 ：
+
+***
+
+#### - error：·运行几次后再运行`sim_vehicle.py --map --console`出现sim_vehicle.py无法找到文件与目录
+Solve：
+~~~
+../Tools/autotest/sim_vehicle.py --frame singlecopter --map --console
+~~~
+
+## The fifth day——12.15
