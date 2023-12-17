@@ -122,19 +122,21 @@ _怎么会有装起来这么麻烦的东西_
 - question 1 : 装着装着虚拟机就死机了？
 - solve : 强制重启，太智能了我直接执行下一个操作居然帮我帮上个死机没完成的操作自动执行
 - question 2 : 检验时执行 pkg-config opencv --modversion 报错
-- solve : 手动创建opencv.pc
-
-```c++
-cd /usr/local/lib
-sudo mkdir pkgconfig && cd pkgconfig
-sudo gedit opencv.pc
+- solve : 缺失了opencv.pc这个配置信息文件
+手动创建opencv.pc
 ```
+cd /usr/local/lib
+sudo mkdir pkgconfig
+cd pkgconfig
+sudo touch opencv.pc
+```
+添加以下信息
 ```c++
 prefix=/usr/local
 exec_prefix=${prefix}
 includedir=/usr/local/include
 libdir=/usr/local/lib
- 
+
 Name: OpenCV
 Description: Open Source Computer Vision Library
 Version: 4.4.0
@@ -215,6 +217,13 @@ sudo ldconfig
 ## The forth day——12.13
 //最顺利的一集
 ### 1.install anaconda
+error ：“conda”无法找到命令
+solve ：导入路径才能使用
+~~~
+sudo gedit ~/.bashrc
+export PATH="/home/用户名/anaconda3/bin:$PATH"
+source ~/.bashrc
+~~~
 ### 2.create  virtul environment
 ### 3.install pytorch
 
@@ -229,12 +238,17 @@ sudo ldconfig
 
 ***
 
-## The fifth day——12.14
+## The fifth day to The seventhday——12.14-16
 
 ***
 
 ### 1.搭建Ardupilot开发环境
 ### 2.启动SITL
+#### -error ：运行奇慢无比
+~~~
+Tools/environment_install/install-prereqs-ubuntu.sh-y
+~~~
+solve ：挂着下一个晚上，第二天重下
 #### - error：Failed to load module
 1. TRY 1 ：//fail
 ~~~
@@ -281,7 +295,7 @@ pip3 install PyYAML mavproxy --user
 echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
 ~~~
 ***
-5. TRY 5 ：
+5. TRY 5 ：//fail
 From csdn：
 更换python版本，旧版本的mavproxy貌似不支持python3
 添加python2到索引，并设置python2为默认的python版本
@@ -291,13 +305,44 @@ sudo update-alternatives --config python
 ```
 ***
 6. TRY 6 ：
-
+重装
+成功
 ***
 
-#### - error：·运行几次后再运行`sim_vehicle.py --map --console`出现sim_vehicle.py无法找到文件与目录
+#### - error：·运行几次后报错
+运行`sim_vehicle.py --map --console`出现sim_vehicle.py无法找到文件与目录
 Solve：
+
 ~~~
 ../Tools/autotest/sim_vehicle.py --frame singlecopter --map --console
 ~~~
 
-## The fifth day——12.15
+***
+
+## The eighth day——12.17
+
+***
+
+### 1.安装nvidia和cuda
+//fail 虚拟机装不了一点
+***
+### 2.下载yolo5代码和预训练模型
+
+
+
+***
+### 3.安装anaconda后再重启SITL仿真
+
+#### -error ：再次无法打开consolo和map
+solve ：安装opencv-python，wxpython，matplotlib库
+#### -error ：安装wxpython时报错
+
+ERROR: Could not build wheels for wxPython
+
+TRY1 ：创建python=3.8的虚拟环境安装//fail
+TRY2 ：创建python=3.6的虚拟环境安装//fail
+TRY3 ：安装旧版本的wxpython//fail
+TRY4 ：创建python=3.9的虚拟环境安装//successful
+
+### 成功打开console和map
+***
