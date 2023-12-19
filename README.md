@@ -304,10 +304,20 @@ sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
 sudo update-alternatives --config python
 ```
 ***
-6. TRY 6 ：
+6. TRY 6 ：//fail——>创建虚拟环境后需要重新安装依赖包
+~~~
+Tools/environment_install/install-prereqs-ubuntu.sh-y
+~~~
+创建虚拟环境
+***
+7. TRY 7 ：//wrong choice
 重装
 成功
 ***
+#### SOLVE:
+1. 创建python=3.9的虚拟环境
+2. 安装依赖包
+3. 找到缺少的python库   opencv-python  wxpython  matplotlib
 
 #### - error：·运行几次后报错
 运行`sim_vehicle.py --map --console`出现sim_vehicle.py无法找到文件与目录
@@ -325,12 +335,8 @@ Solve：
 
 ### 1.安装nvidia和cuda
 //fail 虚拟机装不了一点
-***
 ### 2.下载yolo5代码和预训练模型
 
-
-
-***
 ### 3.安装anaconda后再重启SITL仿真
 
 #### -error ：再次无法打开consolo和map
@@ -339,10 +345,87 @@ solve ：安装opencv-python，wxpython，matplotlib库
 
 ERROR: Could not build wheels for wxPython
 
-TRY1 ：创建python=3.8的虚拟环境安装//fail
+TRY1 ：创建python=3.8的虚拟环境安装//fail ——>
 TRY2 ：创建python=3.6的虚拟环境安装//fail
 TRY3 ：安装旧版本的wxpython//fail
-TRY4 ：创建python=3.9的虚拟环境安装//successful
+TRY4 ：创建python=3.9的虚拟环境安装//successful ——>
 
 ### 成功打开console和map
 ***
+
+## The ninth day——12.18
+***
+### 1. .gitignore
+#### 忽略规则优先级
+1. 从命令行中读取可用的忽略规则
+2. 当前目录定义的规则
+3. 父级目录定义的规则，依次递推
+4. $GIT_DIR/info/exclude 文件中定义的规则
+5. core.excludesfile中定义的全局规则
+
+#### 忽略规则匹配语法
+~~~
+空格不匹配任意文件，可作为分隔符，可用反斜杠转义
+开头的文件标识 注释，可以使用反斜杠进行转义
+! 开头的模式标识否定，该文件将会再次被包含，如果排除了该文件的父级目录，则使用 ! 也不会再次被包含。可以使用反斜杠进行转义
+/ 结束的模式只匹配文件夹以及在该文件夹路径下的内容，但是不匹配该文件
+/ 开始的模式匹配项目跟目录
+如果一个模式不包含斜杠，则它匹配相对于当前 .gitignore 文件路径的内容，如果该模式不在 .gitignore 文件中，则相对于项目根目录
+** 匹配多级目录，可在开始，中间，结束
+? 通用匹配单个字符
+* 通用匹配零个或多个字符
+[] 通用匹配单个字符列表
+~~~
+#### 示例：
+~~~
+bin/: 忽略当前路径下的bin文件夹，该文件夹下的所有内容都会被忽略，不忽略 bin 文件
+/bin: 忽略根目录下的bin文件
+/*.c: 忽略 cat.c，不忽略 build/cat.c
+debug/*.obj: 忽略 debug/io.obj，不忽略 debug/common/io.obj 和 tools/debug/io.obj
+**/foo: 忽略/foo, a/foo, a/b/foo等
+a/**/b: 忽略a/b, a/x/b, a/x/y/b等
+!/bin/run.sh: 不忽略 bin 目录下的 run.sh 文件
+*.log: 忽略所有 .log 文件
+config.php: 忽略当前路径的 config.php 文件
+~~~
+#### 不生效情况
+1. 已纳入版本管理
+solve：删除本地缓存
+```
+git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
+```
+2. 添加文件被忽略
+- 强制添加
+```
+$ git add -f App.class
+```
+- 检查gitignore
+```
+$ git check-ignore -v filename.
+```
+***
+### 2. git lfs
+#### LFS作用
+Large File Storge，可以帮助我们管理比较大的文件，git lfs对于需要追踪的文件只会保存一个指向该文件的指针，而不是在本地仓库中保存每次提交的版本，节省了本地磁盘空间，缩小了git的传输时间。
+它通过将大文件存储在Git仓库之外的服务器上，并使用指向这些文件的指针来跟踪和管理这些文件。这样可以避免Git仓库变得庞大和不稳定。Git LFS支持大文件的版本控制和协作，使得与大型二进制文件（如图像、音频和视频文件等）一起使用Git变得更加灵活和高效。
+#### LFS使用
+- 跟踪大文件
+```
+git lfs track "*.zip" 
+```
+- 提交前审核
+~~~
+git lfs ls-files
+~~~
+#### LFS实际应用
+- 加快克隆速度
+如果克隆包含大量 LFS 文件的仓库，显式使用 git lfs clone 命令可提供更好的性能
+-   加快拉取速度
+git lfs pull 命令批量下载 Git LFS 文件
+
+***
+
+## The tenth day ——12.19
+### yolov5模型训练
