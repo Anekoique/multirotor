@@ -428,4 +428,20 @@ git lfs pull 命令批量下载 Git LFS 文件
 ***
 
 ## The tenth day ——12.19
+
+***
+
 ### yolov5模型训练
+#### 1. 下载数据集
+- 解压.gz文件报错：EOF tar: 归档文件中异常的 EOF
+solve：在windows下安装压缩为rar文件重新上传到网盘
+#### 2. 训练数据集
+- 训练过程中killed
+solve：减小BATCH_SIZE ( 每epoch一次训练样本数量 )（ 32——>8 )；减小epoch数量 ( 100——>10 )
+#### 3.测试训练后的权重
+
+***
+
+## The twelfth day——12.20
+
+
