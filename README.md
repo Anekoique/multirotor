@@ -12,6 +12,8 @@
 
 * swap sources and 换输入法
 
+![image](https://github.com/stoAir/multirotor/blob/main/Images/1.png)
+
 ### 2.learn git
 
 * github关联远程仓库
