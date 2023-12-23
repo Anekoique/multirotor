@@ -442,6 +442,36 @@ solve：减小BATCH_SIZE ( 每epoch一次训练样本数量 )（ 32——>8 )；
 
 ***
 
-## The twelfth day——12.20
+## Break 12.20-12.22
 
+***
+
+## The eleventh day ——12.23
+
+### 双系统 install ubuntu
+
+- error 1： file /boot/vmlinuz-linus not found
+- solve ：以dd镜像模式写入U盘（推荐是iso镜像
+***
+- error 2 ：Ubuntu系统开机异常：ACPI Error：AE_NOT_FOUND 
+- solve ：——>显卡不能完全支持操作系统中包含的开源驱动程序：在linux那一行最后三个—换成nomodeset；按ctrl+x 
+- solve ：——>开机f2进入bios ，关闭安全启动模式:Secure Boot:Disable ，关闭独显。
+***
+|分区|大小|
+|------|-----|
+|boot/efi|1G|
+|swap|两倍内存|
+|/|150-200G不少于100G|
+|/home|剩下所有|
+***
+
+### 装完就可以卸载 ubuntu 了
+1. windows删除ubuntu的卷
+2. 删除Ubuntu启动引导项
+①Win + R 输入cmd打开终端，输入 diskpart 进入磁盘工具
+②输入 list disk 查看磁盘，输入 select disk 0
+③输入 list partition ，输入 select partition n （Windows EFI分区，一般为260M）
+④输入 assign letter=J（分配盘符）
+⑤管理员模式打开记事本
+⑥打开 J盘/EFI 文件夹，删除Ubuntu文件夹
 
