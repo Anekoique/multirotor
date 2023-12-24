@@ -12,8 +12,8 @@
 
 * swap sources and 换输入法
 
-![image](https://github.com/stoAir/multirotor/blob/main/Images/1.png)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/2.png)
+![image](./Images/1.png)
+![image](./Images/2.png)
 
 ### 2.learn git
 
@@ -44,9 +44,11 @@
 |branch -m|修改分支名|
 |clone|远程仓库关联到本地|
 |push origin branch|修改提交|
+|fetch origin branch|下载远程代码到本地|
+|git merge origin/branch|远程与本地合并|
 
-![image](https://github.com/stoAir/multirotor/blob/main/Images/3.png)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/4.png)
+![image](./Images/3.png)
+![image](./Images/4.png)
 
 ***
 
@@ -72,11 +74,11 @@
 - question 5:本地上传helloworld文件到远程github仓库后，本地修改readme上传git hub出现问题—> git pull 整合远程变更又出现问题—>偏离分支：当本地的分支落后于远程分支时，本地分支又自行修改项目文件生成了新的提交
 - solve : git config pull.rebase false  # 合并  +  git pull
 
-![image](https://github.com/stoAir/multirotor/blob/main/Images/5.png)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/6.png)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/7.png)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/8.png)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/10.png)
+![image](./Images/5.png)
+![image](./Images/6.png)
+![image](./Images/7.png)
+![image](./Images/8.png)
+![image](./Images/10.png)
 
 ### G++
 
@@ -225,11 +227,11 @@ sudo ldconfig
 ***
 - error 7 : 想不起来还error什么了
 
-![image](https://github.com/stoAir/multirotor/blob/main/Images/11.png)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/12.png)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/13.png)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/Cache_-58e101eeb3b1571b..jpg)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/14.png)
+![image](./Images/11.png)
+![image](./Images/12.png)
+![image](./Images/13.png)
+![image](./Images/Cache_-58e101eeb3b1571b..jpg)
+![image](./Images/14.png)
 
 ## The forth day——12.13
 //最顺利的一集
@@ -253,9 +255,9 @@ source ~/.bashrc
 |conda deactivate env_name|退出虚拟环境|
 |conda remove -n your_env_name --all|删除虚拟环境|
 
-![image](https://github.com/stoAir/multirotor/blob/main/Images/15.png)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/16.png)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/17.png)
+![image](./Images/15.png)
+![image](./Images/16.png)
+![image](./Images/17.png)
 
 ***
 
@@ -349,9 +351,9 @@ Solve：
 ~~~
 
 ***
-![image](https://github.com/stoAir/multirotor/blob/main/Images/18.png)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/19.png)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/mmexport1702709649572.png)
+![image](./Images/18.png)
+![image](./Images/19.png)
+![image](./Images/mmexport1702709649572.png)
 
 ## The eighth day——12.17
 
@@ -376,7 +378,7 @@ TRY4 ：创建python=3.9的虚拟环境安装//successful ——>
 
 ### 成功打开console和map
 
-![image](https://github.com/stoAir/multirotor/blob/main/Images/QQ%E6%88%AA%E5%9B%BE20231217094334.png)
+![image](./Images/QQ%E6%88%AA%E5%9B%BE20231217094334.png)
 
 ***
 
@@ -467,9 +469,9 @@ solve：在windows下安装压缩为rar文件重新上传到网盘
 solve：减小BATCH_SIZE ( 每epoch一次训练样本数量 )（ 32——>8 )；减小epoch数量 ( 100——>10 )
 #### 3.测试训练后的权重
 
-![image](https://github.com/stoAir/multirotor/blob/main/Images/QQ%E6%88%AA%E5%9B%BE20231219221432.png)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/QQ%E6%88%AA%E5%9B%BE20231220145615.png)
-![image](https://github.com/stoAir/multirotor/blob/main/Images/QQ%E6%88%AA%E5%9B%BE20231220145707.png)
+![image](./Images/QQ%E6%88%AA%E5%9B%BE20231219221432.png)
+![image](./Images/QQ%E6%88%AA%E5%9B%BE20231220145615.png)
+![image](./Images/QQ%E6%88%AA%E5%9B%BE20231220145707.png)
 
 ***
 
@@ -496,7 +498,7 @@ solve：减小BATCH_SIZE ( 每epoch一次训练样本数量 )（ 32——>8 )；
 |/home|剩下所有|
 ***
 
-![image](https://github.com/stoAir/multirotor/blob/main/Images/Cache_3cbf388ed82c1906..jpg)
+![image](./Images/Cache_3cbf388ed82c1906..jpg)
 
 ### 装完就可以卸载 ubuntu 了
 1. windows删除ubuntu的卷
